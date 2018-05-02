@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
 
 </head>
@@ -78,9 +79,9 @@
                 </tr>
       </tbody>
 
-      <h3>条件判断</h3Z>
+      <h3>条件判断</h3>
 <span th:if="${product.price lt 100}" class="offer">Special offer!</span>
-　　不能用"<”，">"等符号，要用"lt"等替代
+<label>不能用"<”，">"等符号，要用"lt"等替代</label>
 
 <!-- 当gender存在时，选择对应的选项；若gender不存在或为null时，取得customer对象的name-->
 <td th:switch="${customer.gender?.name()}">
@@ -88,12 +89,11 @@
     <img th:case="'FEMALE'" src="../../../images/female.png" th:src="@{/images/female.png}" alt="Female" /> <!-- Use "/images/female.png" image -->
     <span th:case="*">Unknown</span>
 </td>
-
-
+<hr/>
 <!--在页面先显示，然后再在显示的数据基础上进行修改-->
 <div class="form-group col-lg-6">
-    <label>姓名<span>&nbsp;</span></label>
- 　　<！--除非resume对象的name属性值为null，否则就用name的值作为placeholder值-->
+    <label>姓名</label>
+ 　　<!--除非resume对象的name属性值为null，否则就用name的值作为placeholder值-->
     <input type="text" class="form-control" th:unless="${resumes.name} eq '' or ${resumes.name} eq null"  
            data-required="true" th:placeholder="${resumes.name}" />
 　　 <!--除非resume对象的name属性不为空，否则就定义一个field方便封装对象，并用placeholder提示-->
@@ -101,23 +101,20 @@
            data-required="true" th:placeholder="请填写您的真实姓名"  />
 </div>
 
-
 <!-- 增加class="enhanced"当balance大雨10000 -->
 <td th:class="${customer.balance gt 10000} ? 'enhanced'" th:text="${customer.balance}">350</td>
-
-      <h3>下拉框</h3>
-　　根据后台数据选中select的选项
+<hr/>
+<h3>下拉框</h3>根据后台数据选中select的选项
  <div class="form-group col-lg-6">
-      <label >性别<span>&nbsp;Sex:</span></label>
+      <label >性别:</label>
       <select th:field="${resume.gender}" class="form-control" th:switch="${resumes.gender.toString()}"
             data-required="true">
+              <option value="">请选择</option>
               <option value="男" th:case="'男'" th:selected="selected" >男</option>
               <option value="女" th:case="'女'" th:selected="selected" >女</option>
-              <option value="">请选择</option>
       </select>
  </div>
 <section>因为gender是定义的Enum（枚举）类型，所以要用toString方法。用th:switch指定传出的变量,用th:case对变量的值进行匹配。！"请选择"放在第一项会出现永远选择的是这个选项。或者用th:if</section>
-      
 <div class='form-group col-lg-4'>
           <select class='form-control' name="skill[4].proficiency">
                 <option >掌握程度</option>
