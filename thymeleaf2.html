@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<h1>标准表达式语法</h1>
+<pre>
+Thymeleaf一共包含以下五种语法
+    ${...} : 变量表达式.
+    *{...} : 选择表达式.
+    #{...} : 国际化消息表达式.
+    @{...} : 链接表达式(URL).
+    ~{...} : 片段表达式.
+</pre>
+<h2>变量表达式</h2>
+<pre>
+变量表达式就是OGNL表达式，或者SpringEL表达式（如果是Spring-Thymeleaf项目）
+可以写为${session.user.name}
+也可以写到标签的属性(或者属性的一部分)中
+<span th:text="${book.author.name}">
+也可以用于复杂处理中
+<li th:each="book:${books}>
+</pre>
+<hr/>
+</body>
+</html>
