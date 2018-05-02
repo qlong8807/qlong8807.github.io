@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+<h3>变量表达式  ${……}</h3>
+<label>显示文本：</label><span th:text="${message}">Red Chair</span>
+<label>输入框：</label><input type="text" name="userName" value="James Carrot" th:value="${user.name}" />
+<h3>选择/星号表达式 *{……}</h3>
+<label>显示文本：</label>
+<div th:object="${session.user}">
+     <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+</div>
+选择表达式一般跟在th:object后，直接取object中的属性。
+<h3>文字国际化表达式  #{……}</h3>
+<label>国际化文本：</label><p th:utext="#{home.welcome}">Welcome to our grocery store!</p>
+<label>显示文本：</label>
+<label>显示文本：</label>
+<label>显示文本：</label>
+</body>      
+</html>
