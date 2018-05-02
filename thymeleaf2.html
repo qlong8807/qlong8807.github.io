@@ -30,10 +30,9 @@ Thymeleaf一共包含以下五种语法
 <h2>选择表达式</h2>
       <pre>
       选择表达式就是用某变量替换了全局变量
-      <xmp>
-            <div th:object="${book}">
+      <xmp><div th:object="${book}">
               <span th:text="*{title}">...</span>
-            </div>
+           </div></xmp>
       以上相当于${book.title}。
       </pre>
 <hr/>
