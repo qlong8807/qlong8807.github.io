@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+
+            /* 页面头部 header*/
+            header {height:150px; background: #ABCDEF}
+            nav {height:30px; background: #ff9900; margin-top: 100px}
+            nav ul li {width: 100px; height:30px; float: left; line-height: 30px}
+
+            /* 页面中部div*/
+            div {margin-top: 10px; height: 1500px}
+            section {height: 1500px; background: #ABCDEF; width:  70%; float: left}
+            article {background: #F90; width: 500px; margin: 0 auto; text-align: center}
+
+            aside {height: 1500px; background: #ABCDEF;width: 28%; float: right}
+
+            /* 页面底部 footer*/
+            footer {height: 100px; background: #ABCDEF; clear: both; margin-top: 10px}
+
+        </style>        
+    </head>
+    <body>
+        <header>
+            <p>这是一个header标签</p>
+            <nav>
+                <ul>
+                    <li>首页</li>
+                    <li>企业</li>
+                    <li>商城</li>
+                    <li>社区</li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            <section>
+                <p>这是一个section标签</p>
+                <article>
+                    <h2>春晓</h2>
+                    <p>
+                        春眠不觉晓,<br/>
+                        处处闻啼鸟,<br/>
+                        夜来风雨声,<br/>
+                        花落只多少.<br/>
+                   <br/>
+                    </p>
+                </article>
+                <article>
+                    <h2>春晓</h2>
+                    <p>
+                        春眠不觉晓,<br/>
+                        处处闻啼鸟,<br/>
+                        夜来风雨声,<br/>
+                        花落只多少.<br/>
+                   <br/>
+                    </p>
+                </article>
+                <article>
+                    <h2>春晓</h2>
+                    <p>
+                        春眠不觉晓,<br/>
+                        处处闻啼鸟,<br/>
+                        夜来风雨声,<br/>
+                        花落只多少.<br/>
+                   <br/>
+                    </p>
+                </article>
+                <hr/>
+
+                <figure>
+                    <figcaption>UFO</figcaption>
+                    <p>不明飞行物</p>
+                </figure>
+                <figure>
+                    <dt>DDS</dt>
+                    <dd>大屌丝</dd>
+                </figure>    
+                <hr/>
+                <dialog>
+                    <dt>问</dt>
+                    <dd>答</dd>
+                    <dt>再问</dt>
+                    <dd>再达</dd>
+                </dialog> 
+                <hr/>
+                <menu>
+                    <li>点击</li>
+                    <li>右键单击</li>
+                </menu>  
+                <hr/>
+                <span contextmenu="candan">右键单击我试试</span>
+                <menu type="context" id="candan">
+                    <menuitem label="菜单1" onclick="alert('单击啦')" icon="http://www.baidu.com/img/baidu_sylogo1.gif"></menuitem>
+                </menu>   
+                <meter min="0" max="10" value="5" low="3" high="7"></meter>
+                <progress max="100" value="0" id="pro"></progress>
+                <script>
+                     var pro = document.getElementById('pro');
+                     setInterval(function(){
+                         pro.value += 1;
+                     },100);
+                </script>  
+                <details>
+                    <dt>这是一个问题</dt>
+                    <dd>这是一个答案</dd>
+                    <dt>这是一个问题</dt>
+                    <dd>这是一个答案</dd>
+                    <dt>这是一个问题</dt>
+                    <dd>这是一个答案</dd>                
+                </details>
+                <hr />
+                <ruby>这<rp>(</rp><rt>zhe</rt><rp>)</rp></ruby>      
+                <hr/>
+                女人<mark>最喜欢的事情</mark>作  
+            </section>
+            <aside>
+                <p>这是一个aside标签</p>
+                <hgrounp>
+                    <h3>徐亚飞为什么这么爱我？</h3>
+                    <h3>徐亚飞为什么这么爱我？</h3>
+                    <h3>徐亚飞为什么这么爱我？</h3>
+                    <h3>徐亚飞为什么这么爱我？</h3>
+                </hgrounp>
+            </aside>
+        </div>
+        <footer>
+            <p>这是一个footer标签</p>
+            <hr/>
+            <small>法律条文</small>
+            <small>联系我们</small>
+            <small>客户意见</small>
+            <small>商户合作</small>
+        </footer>
+    </body>
+
+</html>
