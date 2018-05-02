@@ -22,11 +22,20 @@ Thymeleaf一共包含以下五种语法
 变量表达式就是OGNL表达式，或者SpringEL表达式（如果是Spring-Thymeleaf项目）
 可以写为${session.user.name}
 也可以写到标签的属性(或者属性的一部分)中
-<code><span th:text="${book.author.name}"></code>
+<script type='text/html' style='display:block'><span th:text="${book.author.name}"></script>
 也可以用于复杂处理中
 <xmp><li th:each="book:${books}></xmp>
 </pre>
 <hr/>
-<script type='text/html' style='display:block'> <span th:text="${book.author.name}"></script>
+<h2>选择表达式</h2>
+      <pre>
+      选择表达式就是用某变量替换了全局变量
+      <xmp>
+            <div th:object="${book}">
+              <span th:text="*{title}">...</span>
+            </div>
+      以上相当于${book.title}。
+      </pre>
+<hr/>
 </body>
 </html>
