@@ -98,20 +98,21 @@ Thymeleaf一共包含以下五种语法
       </ol>
       </pre>
 <hr/>
-<h2>链接表达式</h2>
+<h2>表达式预处理</h2>
       <pre>
-      如果应用程序部署名为/myapp，那么以下语句
-      <script type='text/html' style='display:block'><a th:href="@{/order/list}">...</a></script>
-      相当于：<script type='text/html' style='display:block'><a href="/myapp/order/list">...</a></script>
-      如果需要在cookies未启用的情况下保持session：
-      <script type='text/html' style='display:block'><a href="/myapp/order/list;jsessionid=23fa234asdf2156adsf8">...</a></script>
-      URL也可以带上参数
-      <script type='text/html' style='display:block'><a th:href="@{/order/details(id=${orderId},type=${orderType})}">...</a></script>
-      相当于：<script type='text/html' style='display:block'><a href="/myapp/order/details?id=23&amp;type=online">...</a></script>
-      也可以使用相对路径：<script type='text/html' style='display:block'><a th:href="@{../documents/report}">...</a></script>
-      也可以使用绝对路径：<script type='text/html' style='display:block'><a th:href="@{//static.mycompany.com/res/initial}">...</a></script>
-      还可以这样<script type='text/html' style='display:block'><a th:href="@{http://www.mycompany.com/main}">...</a></script>
+      这样的表达式将会优先执行：#{selection.__${sel.code}__}
+      详情可以查看: selection.ALL</script>
       </pre>
 <hr/>
+<h1>一些基本属性</h1>
+      <pre>
+      <script type='text/html' style='display:block'>
+      文本显示：<p th:text="#{msg.welcome}">Welcome everyone!</p>
+      循环显示：<li th:each="book : ${books}" th:text="${book.title}">En las Orillas del Sar</li>
+      其他：<form th:action="@{/createOrder}">
+           <input type="button" th:value="#{form.submit}" />
+           <a th:href="@{/admin/users}">
+      </script>
+      </pre>
 </body>
 </html>
