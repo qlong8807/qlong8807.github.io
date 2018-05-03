@@ -13,7 +13,7 @@
 Thymeleaf一共包含以下五种语法
     ${...} : 变量表达式.
     *{...} : 选择表达式.
-    #{...} : 国际化消息表达式.
+    #{...} : 国际化信息表达式.
     @{...} : 链接表达式(URL).
     ~{...} : 片段表达式.
 </pre>
@@ -34,6 +34,30 @@ Thymeleaf一共包含以下五种语法
               <span th:text="*{title}">...</span>
            </div></xmp>
       以上相当于${book.title}。
+      </pre>
+<hr/>
+<h2>国际化信息表达式</h2>
+      <pre>
+      <xmp><table>
+              <th th:text="#{header.address.city}">...</th>
+              <th th:text="#{header.address.country}">...</th>
+           </table></xmp>
+      也可以这样指定变量：#{${config.adminWelcomeKey}(${session.user.name})}
+      </pre>
+<hr/>
+<h2>链接表达式</h2>
+      <pre>
+      如果应用程序部署名为/myapp，那么以下语句
+      <xmp><a th:href="@{/order/list}">...</a></xmp>
+      相当于：<xmp><a href="/myapp/order/list">...</a></xmp>
+      如果需要在cookies未启用的情况下保持session：
+      <a href="/myapp/order/list;jsessionid=23fa234asdf2156adsf8">...</a>
+      URL也可以带上参数
+      <a th:href="@{/order/details(id=${orderId},type=${orderType})}">...</a>
+      相当于：<a href="/myapp/order/details?id=23&amp;type=online">...</a>
+      也可以使用相对路径：<a th:href="@{../documents/report}">...</a>
+      也可以使用绝对路径：<a th:href="@{//static.mycompany.com/res/initial}">...</a>
+      还可以这样<a th:href="@{http://www.mycompany.com/main}">...</a>
       </pre>
 <hr/>
 </body>
