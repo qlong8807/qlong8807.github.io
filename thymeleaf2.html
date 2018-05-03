@@ -37,27 +37,80 @@ Thymeleaf一共包含以下五种语法
       </pre>
 <hr/>
 <h2>国际化信息表达式</h2>
-      <pre>
-      <xmp><table>
+      <pre><script type='text/html' style='display:block'>
+           <table>
               <th th:text="#{header.address.city}">...</th>
               <th th:text="#{header.address.country}">...</th>
-           </table></xmp>
+           </table></script>
       也可以这样指定变量：#{${config.adminWelcomeKey}(${session.user.name})}
       </pre>
 <hr/>
 <h2>链接表达式</h2>
       <pre>
       如果应用程序部署名为/myapp，那么以下语句
-      <xmp><a th:href="@{/order/list}">...</a></xmp>
-      相当于：<xmp><a href="/myapp/order/list">...</a></xmp>
+      <script type='text/html' style='display:block'><a th:href="@{/order/list}">...</a></script>
+      相当于：<script type='text/html' style='display:block'><a href="/myapp/order/list">...</a></script>
       如果需要在cookies未启用的情况下保持session：
-      <a href="/myapp/order/list;jsessionid=23fa234asdf2156adsf8">...</a>
+      <script type='text/html' style='display:block'><a href="/myapp/order/list;jsessionid=23fa234asdf2156adsf8">...</a></script>
       URL也可以带上参数
-      <a th:href="@{/order/details(id=${orderId},type=${orderType})}">...</a>
-      相当于：<a href="/myapp/order/details?id=23&amp;type=online">...</a>
-      也可以使用相对路径：<a th:href="@{../documents/report}">...</a>
-      也可以使用绝对路径：<a th:href="@{//static.mycompany.com/res/initial}">...</a>
-      还可以这样<a th:href="@{http://www.mycompany.com/main}">...</a>
+      <script type='text/html' style='display:block'><a th:href="@{/order/details(id=${orderId},type=${orderType})}">...</a></script>
+      相当于：<script type='text/html' style='display:block'><a href="/myapp/order/details?id=23&amp;type=online">...</a></script>
+      也可以使用相对路径：<script type='text/html' style='display:block'><a th:href="@{../documents/report}">...</a></script>
+      也可以使用绝对路径：<script type='text/html' style='display:block'><a th:href="@{//static.mycompany.com/res/initial}">...</a></script>
+      还可以这样<script type='text/html' style='display:block'><a th:href="@{http://www.mycompany.com/main}">...</a></script>
+      </pre>
+<hr/>
+<h2>字符和操作</h2>
+      <pre>
+      <h3>字符</h3>
+      <ol>
+      <li>文本字符：'one text','hello'</li>
+      <li>数字字符：0,23,11,3.5</li>
+      <li>布尔字符：true,false</li>
+      <li>空字符：null</li>
+      <li>字符标记：one,some,main,id</li>
+      </ol>
+      <h3>文本操作</h3>
+      <ol>
+      <li>字符拼接：+ </li>
+      <li>字符替换：|The name is ${name}|</li>
+      </ol>
+      <h3>算术操作</h3>
+      <ol>
+      <li>二进制操作：+, -, *, /, % </li>
+      <li>字符替换：|The name is ${name}|</li>
+      </ol>
+      <h3>布尔操作</h3>
+      <ol>
+      <li>二进制操作：and, or</li>
+      <li>布尔否定：!, not</li>
+      </ol>
+      <h3>比较和等于</h3>
+      <ol>
+      <li>比较：>, <, >=, <= (gt, lt, ge, le) </li>
+      <li>等于：==, != (eq, ne)</li>
+      </ol>
+      <h3>条件操作</h3>
+      <ol>
+      <li>if-then：(if) ? (then) </li>
+      <li>if-then-else：(if) ? (then) : (else)</li>
+      <li>默认：(value)?:(defaultValue)</li>
+      </ol>
+      </pre>
+<hr/>
+<h2>链接表达式</h2>
+      <pre>
+      如果应用程序部署名为/myapp，那么以下语句
+      <script type='text/html' style='display:block'><a th:href="@{/order/list}">...</a></script>
+      相当于：<script type='text/html' style='display:block'><a href="/myapp/order/list">...</a></script>
+      如果需要在cookies未启用的情况下保持session：
+      <script type='text/html' style='display:block'><a href="/myapp/order/list;jsessionid=23fa234asdf2156adsf8">...</a></script>
+      URL也可以带上参数
+      <script type='text/html' style='display:block'><a th:href="@{/order/details(id=${orderId},type=${orderType})}">...</a></script>
+      相当于：<script type='text/html' style='display:block'><a href="/myapp/order/details?id=23&amp;type=online">...</a></script>
+      也可以使用相对路径：<script type='text/html' style='display:block'><a th:href="@{../documents/report}">...</a></script>
+      也可以使用绝对路径：<script type='text/html' style='display:block'><a th:href="@{//static.mycompany.com/res/initial}">...</a></script>
+      还可以这样<script type='text/html' style='display:block'><a th:href="@{http://www.mycompany.com/main}">...</a></script>
       </pre>
 <hr/>
 </body>
