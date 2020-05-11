@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>MaidenHead</title>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no" />  
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=IuXZz0GUFG8ejAGZ57HSwVTbI1QYpHme"></script>
+    <style type='text/css'>
+        
+    </style>
+	
+</head>
+<body>
+
+<div>
+地址：<input id="addr" type="text" placeholder="北京市海淀区上地10街10号"/>
+<button onclick="getLocationByAddress();">地址查询经纬度</button>
+<span id="result0">经纬度</span>
+</div>
+
+<div>
+经纬度：<input id="lonlat" type="text" placeholder="116.30842,40.05703"/>
+<button onclick="getStr();">查询字符串</button>
+<span id="result1">aaa</span>
+</div>
+<div>
+梅登海德网格字符串：<input id="mdhd" type="text"/>
+<button onclick="getLonLat();">查询经纬度</button>
+<span id="result2">lon,lat</span>
+</div>
+
+<div>
+经纬度：<input id="lonlat2" type="text" placeholder="116.30842,40.05703"/>
+<button onclick="getAddressByLocation();">经纬度查询地址</button>
+<span id="result3">地址</span>
+</div>
+
+
+<div id="container"></div> 
+</body>
+<script>
+$(function(){
+
+});
+
+function getStr(){
+	var laton = $("#lonlat").val();
+	var lon = laton.substring(0,laton.indexOf(","));
+	var lat = laton.substring(laton.indexOf(",")+1);
+	console.log(lon+"----"+lat);
+	$("#result1").text(getCode(lon,lat));
+}
+
+function getLonLat(){
+	$("#result2").text(getBound($("#mdhd").val()));
+}
+
+function index2Char(idx) {
+	return String.fromCharCode('A'.charCodeAt(0) + idx);
+}
+function char2Index(c) {
+	return c.charCodeAt(0) - "A".charCodeAt(0);
+}
+ /**
+通过经纬度获取梅登黑德格网编号
+*/
+function getCode(lon, lat) {
+	// 计算场(field)
+	lon = parseFloat(lon);
+	lat = parseFloat(lat);
+	let field1 = Math.floor((180 + lon) / 20);
+	let field2 = Math.floor((90 + lat) / 10);
+	console.log(`${field1}-${field2}`);
+	console.log(lon+"---"+lat);
+	console.log((180 + lon));
+	console.log((180 + lon) / 20);
+	console.log(Math.floor((180 + lon) / 20));
+	let Field = index2Char(field1) + index2Char(field2);
+	console.log(Field);
+
+	// 计算方(square)
+	let square1 = Math.floor(Math.floor(lon + 180) % 20 / 2);
+	let square2 = Math.floor(lat + 90) % 10;
+	let code = Field + square1 + square2;
+
+	// 计算块
+	let block1 = Math.floor((lon - Math.floor(lon / 2) * 2) * 60 / 5);
+	let block2 = Math.floor((lat - Math.floor(lat)) * 60 / 2.5);
+	console.log(`${block1} - ${block2}`);
+	code = code + index2Char(block1) + index2Char(block2);
+
+	console.log(code);
+	return code;
+}
+/**
+根据梅登黑德编号得出范围
+*/
+function getBound(code) {
+	code = code.toUpperCase();
+	let lon = char2Index(code[0]) * 20 + code[2] * 2 + char2Index(code[4]) * 5 / 60 - 180;
+	let lat = char2Index(code[1]) * 10 + code[3] *1 + char2Index(code[5]) * 2.5 / 60 - 90;
+
+	//return [lon, lat, lon + 5 / 60, lat + 2.5 / 60];
+return [lon, lat];
+}
+
+function getLocationByAddress(){
+	var addr = $("#addr").val();
+	var city = addr.substring(0,addr.indexOf("市")+1);
+	var map = new BMap.Map("container");
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+	// 创建地址解析器实例
+	var myGeo = new BMap.Geocoder();
+	// 将地址解析结果显示在地图上，并调整地图视野
+	var r = myGeo.getPoint(addr, function(point){
+		if (point) {
+		console.log(point);
+		console.log([point.lng,point.lat])
+		$("#result0").text([point.lng,point.lat]);
+		//return [point.lng,point.lat];
+			//map.centerAndZoom(point, 16);
+			//map.addOverlay(new BMap.Marker(point));
+		}      
+	 }, 
+	city);
+}
+
+function getAddressByLocation(){
+	var laton = $("#lonlat2").val();
+	var lon = laton.substring(0,laton.indexOf(","));
+	var lat = laton.substring(laton.indexOf(",")+1);
+	console.log(lon+"----"+lat);
+	var map = new BMap.Map("container");      
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);      
+	// 创建地理编码实例      
+	var myGeo = new BMap.Geocoder();      
+	// 根据坐标得到地址描述
+	myGeo.getLocation(new BMap.Point(lon, lat), function(result){      
+		if (result){
+			$("#result3").text(result.address);   
+		}      
+	});
+}
+</script>
+</html>
